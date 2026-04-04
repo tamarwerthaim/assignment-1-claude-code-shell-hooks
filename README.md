@@ -724,7 +724,10 @@ Follow this order — each step builds on the previous one.
 7. **Implement `post_syntax_checker.sh`** — test with valid and invalid `.sh` and `.c` files.
 8. **Implement `post_session_summary.sh`** — use the sample log to verify the report format.
 9. **Implement `hook_runner.sh`** — now that all hooks work individually, wire them together.
-10. **Push to GitHub** and verify all automated tests pass.
+10. **Push to GitHub** and verify all automated tests pass. 
+
+**Note:** The automated tests in the repository are a basic sanity check — they do not cover all cases. The final grading will use a more comprehensive test suite with additional edge cases, alongside the oral examination. Passing the provided tests is necessary but not sufficient — make sure your code handles all scenarios described in the specifications, not just the provided test cases.
+
 11. **Test edge cases** — empty input, missing config files, unknown file extensions, absent `session_id`.
 
 ---
