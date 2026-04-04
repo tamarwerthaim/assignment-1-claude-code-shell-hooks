@@ -126,6 +126,8 @@ This is the folder structure you receive. You must implement all files marked wi
 
 **Summary:** You implement **7 files** — 6 hook scripts + `hook_runner.sh`.
 
+> **🚫 No `jq`!** All JSON parsing must use basic Bash tools only (`grep`, `sed`, `awk`, `cut`, etc.). This is intentional — practicing core text processing is a key goal of this exercise. Submissions using `jq` will fail the automated tests.
+
 **Important:** The configuration files provided are **examples only**. During automated testing, these files may contain different values, different patterns, or a different number of entries. Your code must handle any valid configuration — do not hardcode values from the example files.
 
 ---
