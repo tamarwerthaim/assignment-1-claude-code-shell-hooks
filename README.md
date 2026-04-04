@@ -105,6 +105,8 @@ This is the folder structure you receive. You must implement all files marked wi
 ```
 ├── hook_runner.sh                        ← IMPLEMENT (starter template provided)
 ├── hooks_config.txt                      ← PROVIDED — do not modify
+├── test.sh                               ← PROVIDED — automated tests run on every push
+├── .env                                  ← PROVIDED — example secret file used by pre_secrets_guard.sh demo
 ├── .claude/
 │   ├── settings.json                     ← PROVIDED (for optional Claude Code integration)
 │   └── hooks/
