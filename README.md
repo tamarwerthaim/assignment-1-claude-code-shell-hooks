@@ -214,6 +214,7 @@ PreToolUse:Bash:./.claude/hooks/pre_commit_validator.sh
 PostToolUse:Edit:./.claude/hooks/post_auto_backup.sh
 PostToolUse:Edit:./.claude/hooks/post_syntax_checker.sh
 Stop:*:./.claude/hooks/post_session_summary.sh
+
 ```
 
 - `tool_matcher` can be an exact tool name (`Bash`, `Edit`) or `*` to match any tool.
