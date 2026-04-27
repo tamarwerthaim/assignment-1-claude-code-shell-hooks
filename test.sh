@@ -26,7 +26,7 @@ chmod +x "$HOOKS_DIR"/*.sh "$SCRIPT_DIR/hook_runner.sh" 2>/dev/null
 # ── id.txt validation ──────────────────────────────────────────────────────────
 # Must contain exactly 5-9 digits (student ID) before any tests run.
 if [ ! -f "$SCRIPT_DIR/id.txt" ]; then
-    printf '%bMissing id file: id.txt not found. Please create id.txt with your 5-9 digit ID.%b\n' "$RED" "$RESET" >&2
+    printf '%bMissing id file: id.txt not found. Please create id.txt with your 5 last digits of your ID.%b\n' "$RED" "$RESET" >&2
     exit 1
 fi
 
