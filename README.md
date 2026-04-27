@@ -12,9 +12,9 @@
 
 > **⚠️ Please read ALL instructions carefully before starting to code.**
 
-> **📋 Required: `id.txt`** — Before running tests, create a file named `id.txt` in the root of the repository containing your **9-digit ID** and nothing else. The test suite will refuse to run without it.
+> **📋 Required: `id.txt`** — Before running tests, create a file named `id.txt` in the root of the repository containing your **last 5 digits of your ID** and nothing else. The test suite will refuse to run without it.
 > ```bash
-> echo "123456789" > id.txt
+> echo "12345" > id.txt
 > ```
 
 > **Can't find your name in the GitHub Classroom?** If you don't see your name on the exercise classroom welcome board, contact us immediately for help.
