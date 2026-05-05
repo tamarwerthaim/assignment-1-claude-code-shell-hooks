@@ -23,19 +23,6 @@ FAIL=0
 # Ensure all hook scripts are executable
 chmod +x "$HOOKS_DIR"/*.sh "$SCRIPT_DIR/hook_runner.sh" 2>/dev/null
 
-# ── id.txt validation ──────────────────────────────────────────────────────────
-# Must contain exactly 5-9 digits (student ID) before any tests run.
-if [ ! -f "$SCRIPT_DIR/id.txt" ]; then
-    printf '%bMissing id file: id.txt not found. Please create id.txt with your 5 last digits of your ID.%b\n' "$RED" "$RESET" >&2
-    exit 1
-fi
-
-ID_CONTENT="$(tr -d '[:space:]' < "$SCRIPT_DIR/id.txt")"
-if ! printf '%s' "$ID_CONTENT" | grep -qE '^[0-9]{5,9}$'; then
-    printf '%bInvalid id file: id.txt must contain 5-9 digits. Found: "%s"%b\n' "$RED" "$ID_CONTENT" "$RESET" >&2
-    exit 1
-fi
-
 # ── Helper functions ───────────────────────────────────────────────────────────
 
 # reset_state: wipe runtime data to start each test section fresh

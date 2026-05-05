@@ -57,6 +57,76 @@ BLOCKED=0
 WARNINGS=0
 FINAL_EXIT=0
 
+while read -r line; do
+    # empty line or lines starting with '#'
+    if [[ -z "$line" || "$line" =~ ^#  ]]; then
+        continue
+    fi
+
+    # Split the line on ':' 
+    # | - do right in left
+    CONF_EVENT=$(echo "$line" | cut -d ':' -f1)
+    CONF_MATCHER=$(echo "$line" | cut -d':' -f2)
+    CONF_SCRIPT=$(echo "$line" | cut -d':' -f3-)
+
+    #check arg 1
+    if [[ "$CONF_EVENT" != "$EVENT_TYPE" ]]; then
+        continue
+    fi
+    #check arg 2
+    if [[ "$CONF_MATCHER" != "$TOOL_NAME" && "$CONF_MATCHER" != '*' ]]; then
+        continue
+    fi
+    #increment matched count
+    ((MATCHED++))
+
+    #script pass
+    if [[ "$CONF_SCRIPT" == ./* ]]; then
+        CONF_SCRIPT="${RUNNER_DIR}/${CONF_SCRIPT}"
+    fi
+
+    #print running hook script (pass)
+    echo "${CYAN} Running hook script: ${CONF_SCRIPT} ${RESET}"
+
+    #mktemp - temp file
+    STDERR_FILE=$(mktemp)
+    # enter JSON (the stdin in TEMP_FILE) to hook script
+    # enter errors to STDERR_FILE (if..)
+    "$CONF_SCRIPT" < "$TEMP_FILE" 2> "$STDERR_FILE"
+    # $? - the last answer
+    EXIT_CODE=$?
+
+    if [[ "$EXIT_CODE" -eq 0 ]]; then
+        echo "${GREEN}✓ Passed ${RESET}"
+        ((PASSED++))
+    elif [[ "$EXIT_CODE" -eq 2 ]]; then
+        echo "${RED}✗ BLOCKED ${RESET}"
+        # s - size (>0)
+        if [[ -s STDERR_FILE ]]; then
+            echo "Error output: "
+            #cat- read from file
+            cat "$STDERR_FILE"
+        fi
+        ((BLOCKED++))
+        FINAL_EXIT=2
+        echo "Chain stopped"
+        break
+    else
+        echo "${YELLOW}⚠ Warning (exit $EXIT_CODE)${RESET}"
+        # s - size (>0)
+        if [[ -s STDERR_FILE ]]; then
+            echo "Error output: "
+            #cat- read from file
+            cat "$STDERR_FILE"
+        fi
+        ((WARNINGS++))
+    fi
+
+    #Print a blank line
+    echo ""
+
+done < "hooks_config.txt"
+
 # =============================================================================
 # TODO: Process the config file line by line.
 #

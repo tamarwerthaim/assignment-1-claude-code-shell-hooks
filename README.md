@@ -1,8 +1,9 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/LNvD_sju)
 # OS Course 2026 — Exercise 1: Claude Code Shell Hooks
 
 | | |
 |---|---|
-| **Deadline** | May 5 23:59, 2026 |
+| **Deadline** | April 20 23:59, 2026 |
 | **Submission** | GitHub Classroom — your code is tested automatically on every push |
 | **Type** | Solo assignment |
 | **Language** | Bash only |
@@ -11,11 +12,6 @@
 | **Deadline extensions** | Email os.biu.2026@gmail.com (see details below) |
 
 > **⚠️ Please read ALL instructions carefully before starting to code.**
-
-> **📋 Required: `id.txt`** — Before running tests, create a file named `id.txt` in the root of the repository containing your **last 5 digits of your ID** and nothing else. The test suite will refuse to run without it.
-> ```bash
-> echo "12345" > id.txt
-> ```
 
 > **Can't find your name in the GitHub Classroom?** If you don't see your name on the exercise classroom welcome board, contact us immediately for help.
 
@@ -219,7 +215,6 @@ PreToolUse:Bash:./.claude/hooks/pre_commit_validator.sh
 PostToolUse:Edit:./.claude/hooks/post_auto_backup.sh
 PostToolUse:Edit:./.claude/hooks/post_syntax_checker.sh
 Stop:*:./.claude/hooks/post_session_summary.sh
-
 ```
 
 - `tool_matcher` can be an exact tool name (`Bash`, `Edit`) or `*` to match any tool.
